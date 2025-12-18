@@ -1,0 +1,7 @@
+C:\Users\DAOVT1\QrScanService\bin\Release\net8.0\win-x64\publish\appsettings.Development.json
+C:\Users\DAOVT1\QrScanService\bin\Release\net8.0\win-x64\publish\appsettings.json
+C:\Users\DAOVT1\QrScanService\bin\Release\net8.0\win-x64\publish\QrScanService.pdb
+C:\Users\DAOVT1\QrScanService\bin\Release\net8.0\win-x64\publish\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\DAOVT1\QrScanService\bin\Release\net8.0\win-x64\publish\OpenCvSharpExtern.dll
+C:\Users\DAOVT1\QrScanService\bin\Release\net8.0\win-x64\publish\opencv_videoio_ffmpeg4100_64.dll
+C:\Users\DAOVT1\QrScanService\bin\Release\net8.0\win-x64\publish\QrScanService.exe
