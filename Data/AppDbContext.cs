@@ -1,15 +1,13 @@
-﻿// ===============================
-// FILE: Data/AppDbContext.cs  (chỉ phần liên quan)
-// ===============================
-using Microsoft.EntityFrameworkCore;
-using WebGhiHinh.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using QrScanService.Models; // 👈 Đổi thành namespace chứa Model của Worker
 
-namespace WebGhiHinh.Data
+namespace QrScanService.Data // 👈 Đổi namespace cho khớp với Project Worker
 {
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+        // Các bảng giữ nguyên để khớp với Database
         public DbSet<Station> Stations => Set<Station>();
         public DbSet<Camera> Cameras => Set<Camera>();
         public DbSet<VideoLog> VideoLogs => Set<VideoLog>();
@@ -19,6 +17,7 @@ namespace WebGhiHinh.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Cấu hình mối quan hệ (Copy y nguyên từ Web sang)
             modelBuilder.Entity<Station>()
                 .HasOne(s => s.OverviewCamera)
                 .WithMany()

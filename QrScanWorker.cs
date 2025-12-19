@@ -1,26 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
-using QrScanService.Data; // Namespace chứa AppDbContext
+using QrScanService.Data;
+using QrScanService.Models;
 using System.Drawing;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using ZXing;
+using ZXing.Windows.Compatibility;
 
 public class QrScanWorker : BackgroundService
 {
-    private readonly IServiceScopeFactory _scopeFactory; // 👈 Dùng để tạo DbContext
+    private readonly IServiceScopeFactory _scopeFactory;
     private readonly IHttpClientFactory _httpFactory;
     private readonly JwtHelper _jwt;
     private readonly ILogger<QrScanWorker> _logger;
     private readonly IConfiguration _config;
 
-    // Dictionary để quản lý trạng thái quét của từng Camera (Key: StationId)
-    private Dictionary<int, string> _lastQrCodes = new();
-    private Dictionary<int, DateTime> _lastSentTimes = new();
+    private readonly Dictionary<int, VideoCapture> _captures = new();
+    private readonly Dictionary<int, string> _lastQrCodes = new();
+    private readonly Dictionary<int, DateTime> _lastSentTimes = new();
+
+    private List<Station> _cachedStations = new();
+    private DateTime _lastDbReload = DateTime.MinValue;
 
     public QrScanWorker(
-        IServiceScopeFactory scopeFactory, // 👈 Inject ScopeFactory
+        IServiceScopeFactory scopeFactory,
         IHttpClientFactory httpFactory,
         JwtHelper jwt,
         ILogger<QrScanWorker> logger,
@@ -35,123 +40,151 @@ public class QrScanWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("🚀 QR Worker Started with Database Connection...");
+        _logger.LogInformation("🚀 QR Worker Started: Bounding Box Mode");
 
         while (!stoppingToken.IsCancellationRequested)
         {
-            try
+            if ((DateTime.Now - _lastDbReload).TotalSeconds > 10)
             {
-                // 1. Tạo Scope mới để kết nối Database
-                using (var scope = _scopeFactory.CreateScope())
-                {
-                    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-                    // 2. Lấy danh sách các Trạm có cấu hình QR Camera
-                    var stations = await dbContext.Stations
-                        .Include(s => s.QrCamera)
-                        .Where(s => s.QrCamera != null && !string.IsNullOrEmpty(s.QrCamera.RtspUrl))
-                        .AsNoTracking()
-                        .ToListAsync(stoppingToken);
-
-                    if (stations.Count == 0)
-                    {
-                        _logger.LogWarning("⚠️ No Stations with QR Camera found in DB.");
-                    }
-                    else
-                    {
-                        // 3. Xử lý từng Camera (Có thể chạy Parallel nếu máy mạnh)
-                        // Ở đây mình chạy tuần tự để test cho dễ, tránh treo máy
-                        foreach (var station in stations)
-                        {
-                            await ProcessCamera(station.Name, station.QrCamera!.RtspUrl, station.Id, stoppingToken);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "🔥 Error in Main Loop");
+                await ReloadStationsFromDb(stoppingToken);
             }
 
-            // Nghỉ 1 giây rồi quét lại danh sách DB (hoặc lâu hơn tùy nhu cầu)
-            await Task.Delay(1000, stoppingToken);
+            var tasks = _cachedStations.Select(station => Task.Run(async () =>
+            {
+                await ProcessCamera(station.Id, station.Name, station.QrCamera?.RtspUrl, stoppingToken);
+            }, stoppingToken));
+
+            await Task.WhenAll(tasks);
+            await Task.Delay(200, stoppingToken);
         }
     }
 
-    private async Task ProcessCamera(string stationName, string rtspUrl, int stationId, CancellationToken token)
+    private async Task ReloadStationsFromDb(CancellationToken token)
     {
         try
         {
-            // Mở luồng RTSP (Chỉ lấy 1 frame nhanh để quét)
-            using var capture = new VideoCapture(rtspUrl);
+            using var scope = _scopeFactory.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            if (!capture.IsOpened())
+            _cachedStations = await db.Stations
+                .Include(s => s.QrCamera)
+                .Where(s => s.QrCamera != null && !string.IsNullOrEmpty(s.QrCamera.RtspUrl))
+                .AsNoTracking()
+                .ToListAsync(token);
+
+            _lastDbReload = DateTime.Now;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"⚠️ DB Reload Failed: {ex.Message}");
+        }
+    }
+
+    private async Task ProcessCamera(int stationId, string stationName, string? rtspUrl, CancellationToken token)
+    {
+        if (string.IsNullOrEmpty(rtspUrl)) return;
+
+        try
+        {
+            if (!_captures.TryGetValue(stationId, out var capture) || !capture.IsOpened())
             {
-                _logger.LogWarning($"❌ Cannot connect to camera of {stationName}");
-                return;
+                capture?.Dispose();
+                capture = new VideoCapture(rtspUrl);
+                _captures[stationId] = capture;
+                if (!capture.IsOpened()) return;
             }
 
             using var mat = new Mat();
-            if (capture.Read(mat) && !mat.Empty())
+            if (!capture.Read(mat) || mat.Empty()) return;
+
+            var reader = new BarcodeReader
             {
-                // Đọc QR
-                var reader = new BarcodeReader
+                Options = new ZXing.Common.DecodingOptions
                 {
-                    Options = new ZXing.Common.DecodingOptions
-                    {
-                        TryHarder = true,
-                        PossibleFormats = new[] { BarcodeFormat.QR_CODE }
-                    }
-                };
+                    TryHarder = true,
+                    PossibleFormats = new[] { BarcodeFormat.QR_CODE }
+                }
+            };
 
-                using var bitmap = BitmapConverter.ToBitmap(mat);
-                var result = reader.Decode(bitmap);
+            using var bitmap = BitmapConverter.ToBitmap(mat);
+            var result = reader.Decode(bitmap);
 
-                if (result != null && !string.IsNullOrEmpty(result.Text))
+            if (result != null && !string.IsNullOrEmpty(result.Text))
+            {
+                var qrText = result.Text;
+
+                // 👇👇👇 LOGIC TÍNH TOÁN TỌA ĐỘ VẼ KHUNG 👇👇👇
+                double xPct = 0, yPct = 0, wPct = 0, hPct = 0;
+
+                var points = result.ResultPoints;
+                if (points != null && points.Length > 0)
                 {
-                    var qrText = result.Text;
+                    // Tìm tọa độ min/max của các điểm góc QR
+                    float minX = points.Min(p => p.X);
+                    float maxX = points.Max(p => p.X);
+                    float minY = points.Min(p => p.Y);
+                    float maxY = points.Max(p => p.Y);
 
-                    // Kiểm tra xem mã này đã gửi chưa (Debounce 5 giây cho mỗi trạm)
-                    if (!_lastQrCodes.ContainsKey(stationId) ||
-                        _lastQrCodes[stationId] != qrText ||
-                        (DateTime.Now - _lastSentTimes[stationId]).TotalSeconds > 5)
-                    {
-                        _logger.LogInformation($"✅ {stationName} FOUND: {qrText}");
+                    // Kích thước QR (theo pixel ảnh gốc)
+                    float w = maxX - minX;
+                    float h = maxY - minY;
 
-                        await SendToApi(qrText, stationName, token);
+                    // Chuyển sang Phần Trăm (%) so với kích thước ảnh (mat.Width/Height)
+                    // Công thức: (Pixel / TổngPixel) * 100
+                    xPct = (minX / mat.Width) * 100;
+                    yPct = (minY / mat.Height) * 100;
+                    wPct = (w / mat.Width) * 100;
+                    hPct = (h / mat.Height) * 100;
+                }
 
-                        // Cập nhật trạng thái
-                        _lastQrCodes[stationId] = qrText;
-                        _lastSentTimes[stationId] = DateTime.Now;
-                    }
+                // Debounce Logic
+                bool isNewQr = !_lastQrCodes.ContainsKey(stationId) || _lastQrCodes[stationId] != qrText;
+                bool isTimePassed = !_lastSentTimes.ContainsKey(stationId) || (DateTime.Now - _lastSentTimes[stationId]).TotalSeconds > 5;
+
+                if (isNewQr || isTimePassed)
+                {
+                    _logger.LogInformation($"✅ {stationName}: {qrText} [X:{xPct:F1}% Y:{yPct:F1}%]");
+
+                    // Gửi kèm tọa độ x, y, w, h
+                    await SendToApi(qrText, stationName, xPct, yPct, wPct, hPct, token);
+
+                    _lastQrCodes[stationId] = qrText;
+                    _lastSentTimes[stationId] = DateTime.Now;
                 }
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError($"⚠️ Error processing {stationName}: {ex.Message}");
+            // _logger.LogWarning($"⚠️ Cam {stationName} error: {ex.Message}");
         }
     }
 
-    private async Task SendToApi(string qrText, string stationName, CancellationToken token)
+    // 👇 Cập nhật hàm này nhận thêm tham số tọa độ
+    private async Task SendToApi(string qrText, string stationName, double x, double y, double w, double h, CancellationToken token)
     {
         try
         {
             var client = _httpFactory.CreateClient();
-            var jwtToken = _jwt.CreateToken();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _jwt.CreateToken());
+
+            var payload = new
+            {
+                text = qrText,
+                stationName = stationName,
+                timestamp = DateTime.Now,
+                // 👇 Gửi thêm tọa độ
+                x = x,
+                y = y,
+                w = w,
+                h = h
+            };
+
             var apiUrl = _config["Api:Url"];
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
-
-            var payload = new { text = qrText, stationName = stationName, timestamp = DateTime.Now };
-            var response = await client.PostAsJsonAsync(apiUrl, payload, token);
-
-            if (!response.IsSuccessStatusCode)
-                _logger.LogError($"❌ API Error: {response.StatusCode}");
+            await client.PostAsJsonAsync(apiUrl, payload, token);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "❌ Failed to call API");
+            _logger.LogError($"❌ Send API Failed: {ex.Message}");
         }
     }
 }

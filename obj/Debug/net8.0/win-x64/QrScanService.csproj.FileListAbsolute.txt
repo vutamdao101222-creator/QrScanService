@@ -266,3 +266,4 @@ C:\Users\DAOVT1\QrScanService\obj\Debug\net8.0\win-x64\refint\QrScanService.dll
 C:\Users\DAOVT1\QrScanService\obj\Debug\net8.0\win-x64\QrScanService.pdb
 C:\Users\DAOVT1\QrScanService\obj\Debug\net8.0\win-x64\QrScanService.genruntimeconfig.cache
 C:\Users\DAOVT1\QrScanService\obj\Debug\net8.0\win-x64\ref\QrScanService.dll
+C:\Users\DAOVT1\QrScanService\obj\Debug\net8.0\win-x64\QrScanService.sourcelink.json

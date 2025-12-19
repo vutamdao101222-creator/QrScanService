@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using WebGhiHinh.Models;
+using QrScanService.Models;
 
-namespace WebGhiHinh.Models
+namespace QrScanService.Models
 {
     public class VideoLog
     {

@@ -1,5 +1,5 @@
 ﻿// FILE: Models/Camera.cs
-namespace WebGhiHinh.Models
+namespace QrScanService.Models
 {
     public class Camera
     {

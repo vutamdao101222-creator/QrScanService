@@ -1,7 +1,7 @@
 ﻿// FILE: Models/User.cs
 using System.ComponentModel.DataAnnotations;
 
-namespace WebGhiHinh.Models
+namespace QrScanService.Models
 {
     public class User
     {
