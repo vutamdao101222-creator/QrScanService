@@ -50,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.8, )"
@@ -66,29 +70,27 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.NET.ILLink.Tasks": {
-              "suppressParent": "All",
+            "Microsoft.ML.OnnxRuntime": {
               "target": "Package",
-              "version": "[8.0.22, )",
-              "autoReferenced": true
+              "version": "[1.23.2, )"
             },
             "OpenCvSharp4": {
               "target": "Package",
-              "version": "[4.10.0.20241108, )"
+              "version": "[4.9.0.20240103, )"
             },
             "OpenCvSharp4.Extensions": {
               "target": "Package",
-              "version": "[4.10.0.20241108, )"
+              "version": "[4.9.0.20240103, )"
+            },
+            "OpenCvSharp4.Windows": {
+              "target": "Package",
+              "version": "[4.9.0.20240103, )"
             },
             "OpenCvSharp4.runtime.win": {
               "target": "Package",
-              "version": "[4.10.0.20241108, )"
+              "version": "[4.9.0.20240103, )"
             },
             "System.Drawing.Common": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "System.Net.Http.Json": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
@@ -112,20 +114,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.22, 8.0.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

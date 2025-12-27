@@ -46,6 +46,127 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Connections.Abstractions/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Features": "8.0.0",
+          "System.IO.Pipelines": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Connections.Client/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Common": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Connections.Common/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Common.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Common.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Client": "8.0.0",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client.Core/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Common": "8.0.0",
+          "Microsoft.AspNetCore.SignalR.Protocols.Json": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.Logging": "8.0.0",
+          "System.Threading.Channels": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Common/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Common.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Common.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Protocols.Json/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Common": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -489,6 +610,19 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Features/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.FileProviders.Abstractions/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -1005,10 +1139,100 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/8.0.22": {
+      "Microsoft.ML.OnnxRuntime/1.23.2": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.ML.OnnxRuntime.Managed": "1.23.2"
+        },
         "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
+          "build/netstandard2.1/Microsoft.ML.OnnxRuntime.props": {},
+          "build/netstandard2.1/Microsoft.ML.OnnxRuntime.targets": {}
+        },
+        "runtimeTargets": {
+          "runtimes/android/native/onnxruntime.aar": {
+            "assetType": "native",
+            "rid": "android"
+          },
+          "runtimes/ios/native/onnxruntime.xcframework.zip": {
+            "assetType": "native",
+            "rid": "ios"
+          },
+          "runtimes/linux-arm64/native/libonnxruntime.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-arm64/native/libonnxruntime_providers_shared.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/libonnxruntime.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/libonnxruntime_providers_shared.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libonnxruntime.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libonnxruntime.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-arm64/native/onnxruntime.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-arm64/native/onnxruntime.lib": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-arm64/native/onnxruntime_providers_shared.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-arm64/native/onnxruntime_providers_shared.lib": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/onnxruntime.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/onnxruntime.lib": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/onnxruntime_providers_shared.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/onnxruntime_providers_shared.lib": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "Microsoft.ML.OnnxRuntime.Managed/1.23.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.5",
+          "System.Numerics.Tensors": "9.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.ML.OnnxRuntime.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.ML.OnnxRuntime.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "build/netstandard2.0/Microsoft.ML.OnnxRuntime.Managed.targets": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -1064,7 +1288,7 @@
           }
         }
       },
-      "OpenCvSharp4/4.10.0.20241108": {
+      "OpenCvSharp4/4.9.0.20240103": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.5",
@@ -1081,11 +1305,11 @@
           }
         }
       },
-      "OpenCvSharp4.Extensions/4.10.0.20241108": {
+      "OpenCvSharp4.Extensions/4.9.0.20240103": {
         "type": "package",
         "dependencies": {
-          "OpenCvSharp4": "4.10.0.20241108",
-          "System.Drawing.Common": "8.0.0"
+          "OpenCvSharp4": "4.9.0.20240103",
+          "System.Drawing.Common": "7.0.0"
         },
         "compile": {
           "lib/net6.0/OpenCvSharp.Extensions.dll": {
@@ -1098,7 +1322,7 @@
           }
         }
       },
-      "OpenCvSharp4.runtime.win/4.10.0.20241108": {
+      "OpenCvSharp4.runtime.win/4.9.0.20240103": {
         "type": "package",
         "build": {
           "build/net5.0/OpenCvSharp4.runtime.win.props": {}
@@ -1108,7 +1332,7 @@
             "assetType": "native",
             "rid": "win-x64"
           },
-          "runtimes/win-x64/native/opencv_videoio_ffmpeg4100_64.dll": {
+          "runtimes/win-x64/native/opencv_videoio_ffmpeg490_64.dll": {
             "assetType": "native",
             "rid": "win-x64"
           },
@@ -1116,10 +1340,17 @@
             "assetType": "native",
             "rid": "win-x86"
           },
-          "runtimes/win-x86/native/opencv_videoio_ffmpeg4100.dll": {
+          "runtimes/win-x86/native/opencv_videoio_ffmpeg490.dll": {
             "assetType": "native",
             "rid": "win-x86"
           }
+        }
+      },
+      "OpenCvSharp4.Windows/4.9.0.20240103": {
+        "type": "package",
+        "dependencies": {
+          "OpenCvSharp4": "4.9.0.20240103",
+          "OpenCvSharp4.runtime.win": "4.9.0.20240103"
         }
       },
       "System.Configuration.ConfigurationManager/6.0.1": {
@@ -1305,23 +1536,20 @@
           }
         }
       },
-      "System.Net.Http.Json/8.0.0": {
+      "System.Numerics.Tensors/9.0.0": {
         "type": "package",
-        "dependencies": {
-          "System.Text.Json": "8.0.0"
-        },
         "compile": {
-          "lib/net8.0/System.Net.Http.Json.dll": {
+          "lib/net8.0/System.Numerics.Tensors.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/System.Net.Http.Json.dll": {
+          "lib/net8.0/System.Numerics.Tensors.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
+          "buildTransitive/net8.0/_._": {}
         }
       },
       "System.Numerics.Vectors/4.5.0": {
@@ -1600,6 +1828,22 @@
           "buildTransitive/net8.0/System.Text.Json.targets": {}
         }
       },
+      "System.Threading.Channels/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Threading.Channels.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Threading.Channels.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "System.Threading.Tasks.Extensions/4.5.4": {
         "type": "package",
         "compile": {
@@ -1703,6 +1947,127 @@
         },
         "runtime": {
           "lib/netstandard2.0/Azure.Identity.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Connections.Abstractions/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Features": "8.0.0",
+          "System.IO.Pipelines": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Connections.Client/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Common": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Connections.Common/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Common.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Common.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Client": "8.0.0",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client.Core/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Common": "8.0.0",
+          "Microsoft.AspNetCore.SignalR.Protocols.Json": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.Logging": "8.0.0",
+          "System.Threading.Channels": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Common/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Common.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Common.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Protocols.Json/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Common": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll": {
             "related": ".xml"
           }
         }
@@ -2125,6 +2490,19 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Features/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.FileProviders.Abstractions/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -2641,10 +3019,40 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/8.0.22": {
+      "Microsoft.ML.OnnxRuntime/1.23.2": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.ML.OnnxRuntime.Managed": "1.23.2"
+        },
+        "native": {
+          "runtimes/win-x64/native/onnxruntime.dll": {},
+          "runtimes/win-x64/native/onnxruntime.lib": {},
+          "runtimes/win-x64/native/onnxruntime_providers_shared.dll": {},
+          "runtimes/win-x64/native/onnxruntime_providers_shared.lib": {}
+        },
         "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
+          "build/netstandard2.1/Microsoft.ML.OnnxRuntime.props": {},
+          "build/netstandard2.1/Microsoft.ML.OnnxRuntime.targets": {}
+        }
+      },
+      "Microsoft.ML.OnnxRuntime.Managed/1.23.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.5",
+          "System.Numerics.Tensors": "9.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.ML.OnnxRuntime.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.ML.OnnxRuntime.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "build/netstandard2.0/Microsoft.ML.OnnxRuntime.Managed.targets": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -2694,7 +3102,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "OpenCvSharp4/4.10.0.20241108": {
+      "OpenCvSharp4/4.9.0.20240103": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.5",
@@ -2711,11 +3119,11 @@
           }
         }
       },
-      "OpenCvSharp4.Extensions/4.10.0.20241108": {
+      "OpenCvSharp4.Extensions/4.9.0.20240103": {
         "type": "package",
         "dependencies": {
-          "OpenCvSharp4": "4.10.0.20241108",
-          "System.Drawing.Common": "8.0.0"
+          "OpenCvSharp4": "4.9.0.20240103",
+          "System.Drawing.Common": "7.0.0"
         },
         "compile": {
           "lib/net6.0/OpenCvSharp.Extensions.dll": {
@@ -2728,14 +3136,21 @@
           }
         }
       },
-      "OpenCvSharp4.runtime.win/4.10.0.20241108": {
+      "OpenCvSharp4.runtime.win/4.9.0.20240103": {
         "type": "package",
         "native": {
           "runtimes/win-x64/native/OpenCvSharpExtern.dll": {},
-          "runtimes/win-x64/native/opencv_videoio_ffmpeg4100_64.dll": {}
+          "runtimes/win-x64/native/opencv_videoio_ffmpeg490_64.dll": {}
         },
         "build": {
           "build/net5.0/OpenCvSharp4.runtime.win.props": {}
+        }
+      },
+      "OpenCvSharp4.Windows/4.9.0.20240103": {
+        "type": "package",
+        "dependencies": {
+          "OpenCvSharp4": "4.9.0.20240103",
+          "OpenCvSharp4.runtime.win": "4.9.0.20240103"
         }
       },
       "runtime.any.System.Runtime/4.3.0": {
@@ -2927,23 +3342,20 @@
           }
         }
       },
-      "System.Net.Http.Json/8.0.0": {
+      "System.Numerics.Tensors/9.0.0": {
         "type": "package",
-        "dependencies": {
-          "System.Text.Json": "8.0.0"
-        },
         "compile": {
-          "lib/net8.0/System.Net.Http.Json.dll": {
+          "lib/net8.0/System.Numerics.Tensors.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/System.Net.Http.Json.dll": {
+          "lib/net8.0/System.Numerics.Tensors.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
+          "buildTransitive/net8.0/_._": {}
         }
       },
       "System.Numerics.Vectors/4.5.0": {
@@ -3182,6 +3594,22 @@
           "buildTransitive/net8.0/System.Text.Json.targets": {}
         }
       },
+      "System.Threading.Channels/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Threading.Channels.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Threading.Channels.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "System.Threading.Tasks.Extensions/4.5.4": {
         "type": "package",
         "compile": {
@@ -3280,6 +3708,145 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "Microsoft.AspNetCore.Connections.Abstractions/8.0.0": {
+      "sha512": "WgJE2+VyA0RW4yl+hgfrB7r4CSGcLzAvcVo31swukjXHZvBAjMilyG/pRJ8kroOO1h7sGf4r91Wii2L9gCMNfA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.connections.abstractions/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.Connections.Abstractions.dll",
+        "lib/net462/Microsoft.AspNetCore.Connections.Abstractions.xml",
+        "lib/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Connections.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Connections.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Connections.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.AspNetCore.Connections.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.AspNetCore.Connections.Abstractions.xml",
+        "microsoft.aspnetcore.connections.abstractions.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.connections.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Connections.Client/8.0.0": {
+      "sha512": "21F+t8ofQvH3LCKt6cvg6uzbF5jNbRwMJB5XOB4Prz7nEttP0iAq/EwqE7egdG8Nuoz56xd5jeKXHjU4S+KJ9g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.connections.client/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.Http.Connections.Client.dll",
+        "lib/net462/Microsoft.AspNetCore.Http.Connections.Client.xml",
+        "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Client.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Client.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Connections.Client.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Connections.Client.xml",
+        "lib/netstandard2.1/Microsoft.AspNetCore.Http.Connections.Client.dll",
+        "lib/netstandard2.1/Microsoft.AspNetCore.Http.Connections.Client.xml",
+        "microsoft.aspnetcore.http.connections.client.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.connections.client.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Connections.Common/8.0.0": {
+      "sha512": "iNum3ueml3fqP2YFx6QQSQDsUw5kn7UfZ88NUNwF93bLGebYZ0xIjwdEKOFwutrWfQK/a0QaITUEfygM8pVbeA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.connections.common/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.Http.Connections.Common.dll",
+        "lib/net462/Microsoft.AspNetCore.Http.Connections.Common.xml",
+        "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Common.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Common.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Connections.Common.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Connections.Common.xml",
+        "microsoft.aspnetcore.http.connections.common.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.connections.common.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.SignalR.Client/8.0.0": {
+      "sha512": "ZAxPPLh32MAEg06maSaUMYTklH8cfZdHUqLGUA5CdolzLNmtjslLXGPzIGetzyDmOXZPzTT1QAj/gK2DSrqFjw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.signalr.client/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Client.dll",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Client.xml",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.dll",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Client.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Client.xml",
+        "microsoft.aspnetcore.signalr.client.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.signalr.client.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.SignalR.Client.Core/8.0.0": {
+      "sha512": "EIhKwrVMEy4IpFZY7+3I/91QwSFFAFIlAvTz1Q98VCoIYFuFMQsenA8Pg4lKmHCP8oIASVhtPB45haJ2ufovRw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.signalr.client.core/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Client.Core.dll",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Client.Core.xml",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.Core.dll",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.Core.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Client.Core.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Client.Core.xml",
+        "lib/netstandard2.1/Microsoft.AspNetCore.SignalR.Client.Core.dll",
+        "lib/netstandard2.1/Microsoft.AspNetCore.SignalR.Client.Core.xml",
+        "microsoft.aspnetcore.signalr.client.core.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.signalr.client.core.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.SignalR.Common/8.0.0": {
+      "sha512": "HOy32Kb4z69sCep+pVUTL11L49pk8Ze18HuqCYllaRMdDlfcSrBE0stb8fJL+ogPKTB7XZAxpj1UT/IJQIfS6g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.signalr.common/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Common.dll",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Common.xml",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Common.dll",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Common.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Common.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Common.xml",
+        "microsoft.aspnetcore.signalr.common.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.signalr.common.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.SignalR.Protocols.Json/8.0.0": {
+      "sha512": "3ygw561TXBKnqzfa5L7IBuo6BYgReHocyx4jdLc8utM49OAzU5u+6fTNjH/nvYOrDlPvUV+PZ3hH3jkZ0+Uocg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.signalr.protocols.json/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Protocols.Json.dll",
+        "lib/net462/Microsoft.AspNetCore.SignalR.Protocols.Json.xml",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll",
+        "lib/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Protocols.Json.xml",
+        "microsoft.aspnetcore.signalr.protocols.json.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.signalr.protocols.json.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -3941,6 +4508,25 @@
         "microsoft.extensions.diagnostics.abstractions.9.0.0.nupkg.sha512",
         "microsoft.extensions.diagnostics.abstractions.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Features/8.0.0": {
+      "sha512": "fxj+P9aIbTLtguFwiNqBtGNl4ZU/2Aggwj4/Ruf3qFaiBk7r1t8KnyJ+bEIK5emMyGSszTndwnP/g+gBEP9zLA==",
+      "type": "package",
+      "path": "microsoft.extensions.features/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Features.dll",
+        "lib/net462/Microsoft.Extensions.Features.xml",
+        "lib/net8.0/Microsoft.Extensions.Features.dll",
+        "lib/net8.0/Microsoft.Extensions.Features.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Features.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Features.xml",
+        "microsoft.extensions.features.8.0.0.nupkg.sha512",
+        "microsoft.extensions.features.nuspec"
       ]
     },
     "Microsoft.Extensions.FileProviders.Abstractions/9.0.0": {
@@ -4673,55 +5259,87 @@
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
-    "Microsoft.NET.ILLink.Tasks/8.0.22": {
-      "sha512": "MhcMithKEiyyNkD2ZfbDZPmcOdi0GheGfg8saEIIEfD/fol3iHmcV8TsZkD4ZYz5gdUuoX4YtlVySUU7Sxl9SQ==",
+    "Microsoft.ML.OnnxRuntime/1.23.2": {
+      "sha512": "849xImRO0vxDH7DNlg/FAVGExKfjN1r2CIZevZGI5JQCoOj+0T23ShqPEgu5mLTwElot5X7V0qkO0jUz/yJZbA==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/8.0.22",
-      "hasTools": true,
+      "path": "microsoft.ml.onnxruntime/1.23.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "Sdk/Sdk.props",
-        "THIRD-PARTY-NOTICES.TXT",
-        "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
-        "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
-        "build/Microsoft.NET.ILLink.Analyzers.props",
-        "build/Microsoft.NET.ILLink.Tasks.props",
-        "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.8.0.22.nupkg.sha512",
-        "microsoft.net.illink.tasks.nuspec",
-        "tools/net472/ILLink.Tasks.dll",
-        "tools/net472/ILLink.Tasks.dll.config",
-        "tools/net472/Mono.Cecil.Mdb.dll",
-        "tools/net472/Mono.Cecil.Pdb.dll",
-        "tools/net472/Mono.Cecil.Rocks.dll",
-        "tools/net472/Mono.Cecil.dll",
-        "tools/net472/Sdk/Sdk.props",
-        "tools/net472/System.Buffers.dll",
-        "tools/net472/System.Collections.Immutable.dll",
-        "tools/net472/System.Memory.dll",
-        "tools/net472/System.Numerics.Vectors.dll",
-        "tools/net472/System.Reflection.Metadata.dll",
-        "tools/net472/System.Runtime.CompilerServices.Unsafe.dll",
-        "tools/net472/build/Microsoft.NET.ILLink.Analyzers.props",
-        "tools/net472/build/Microsoft.NET.ILLink.Tasks.props",
-        "tools/net472/build/Microsoft.NET.ILLink.targets",
-        "tools/net8.0/ILLink.Tasks.deps.json",
-        "tools/net8.0/ILLink.Tasks.dll",
-        "tools/net8.0/Mono.Cecil.Mdb.dll",
-        "tools/net8.0/Mono.Cecil.Pdb.dll",
-        "tools/net8.0/Mono.Cecil.Rocks.dll",
-        "tools/net8.0/Mono.Cecil.dll",
-        "tools/net8.0/Sdk/Sdk.props",
-        "tools/net8.0/build/Microsoft.NET.ILLink.Analyzers.props",
-        "tools/net8.0/build/Microsoft.NET.ILLink.Tasks.props",
-        "tools/net8.0/build/Microsoft.NET.ILLink.targets",
-        "tools/net8.0/illink.deps.json",
-        "tools/net8.0/illink.dll",
-        "tools/net8.0/illink.runtimeconfig.json",
-        "useSharedDesignerContext.txt"
+        "LICENSE",
+        "ORT_icon_for_light_bg.png",
+        "Privacy.md",
+        "README.md",
+        "ThirdPartyNotices.txt",
+        "build/native/Microsoft.ML.OnnxRuntime.props",
+        "build/native/Microsoft.ML.OnnxRuntime.targets",
+        "build/native/include/cpu_provider_factory.h",
+        "build/native/include/onnxruntime_c_api.h",
+        "build/native/include/onnxruntime_cxx_api.h",
+        "build/native/include/onnxruntime_cxx_inline.h",
+        "build/native/include/onnxruntime_ep_c_api.h",
+        "build/native/include/onnxruntime_ep_device_ep_metadata_keys.h",
+        "build/native/include/onnxruntime_float16.h",
+        "build/native/include/onnxruntime_lite_custom_op.h",
+        "build/native/include/onnxruntime_run_options_config_keys.h",
+        "build/native/include/onnxruntime_session_options_config_keys.h",
+        "build/native/include/provider_options.h",
+        "build/net8.0-android31.0/Microsoft.ML.OnnxRuntime.targets",
+        "build/net8.0-ios15.4/Microsoft.ML.OnnxRuntime.targets",
+        "build/net8.0-maccatalyst14.0/_._",
+        "build/netstandard2.0/Microsoft.ML.OnnxRuntime.props",
+        "build/netstandard2.0/Microsoft.ML.OnnxRuntime.targets",
+        "build/netstandard2.1/Microsoft.ML.OnnxRuntime.props",
+        "build/netstandard2.1/Microsoft.ML.OnnxRuntime.targets",
+        "buildTransitive/net8.0-android31.0/Microsoft.ML.OnnxRuntime.targets",
+        "buildTransitive/net8.0-ios15.4/Microsoft.ML.OnnxRuntime.targets",
+        "buildTransitive/net8.0-maccatalyst14.0/_._",
+        "microsoft.ml.onnxruntime.1.23.2.nupkg.sha512",
+        "microsoft.ml.onnxruntime.nuspec",
+        "runtimes/android/native/onnxruntime.aar",
+        "runtimes/ios/native/onnxruntime.xcframework.zip",
+        "runtimes/linux-arm64/native/libonnxruntime.so",
+        "runtimes/linux-arm64/native/libonnxruntime_providers_shared.so",
+        "runtimes/linux-x64/native/libonnxruntime.so",
+        "runtimes/linux-x64/native/libonnxruntime_providers_shared.so",
+        "runtimes/osx-arm64/native/libonnxruntime.dylib",
+        "runtimes/osx-x64/native/libonnxruntime.dylib",
+        "runtimes/win-arm64/native/onnxruntime.dll",
+        "runtimes/win-arm64/native/onnxruntime.lib",
+        "runtimes/win-arm64/native/onnxruntime_providers_shared.dll",
+        "runtimes/win-arm64/native/onnxruntime_providers_shared.lib",
+        "runtimes/win-x64/native/onnxruntime.dll",
+        "runtimes/win-x64/native/onnxruntime.lib",
+        "runtimes/win-x64/native/onnxruntime_providers_shared.dll",
+        "runtimes/win-x64/native/onnxruntime_providers_shared.lib"
+      ]
+    },
+    "Microsoft.ML.OnnxRuntime.Managed/1.23.2": {
+      "sha512": "HtlQuzmVrqhnkmwfmkQ+2re8xPxtVmeLRQaYSJ3pXfzKs4b36+yBfa/LnDuzfX1bGcyWn/McKxmbY87TCAmo1Q==",
+      "type": "package",
+      "path": "microsoft.ml.onnxruntime.managed/1.23.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "ORT_icon_for_light_bg.png",
+        "Privacy.md",
+        "README.md",
+        "ThirdPartyNotices.txt",
+        "build/netstandard2.0/Microsoft.ML.OnnxRuntime.Managed.targets",
+        "lib/net8.0-android34.0/Microsoft.ML.OnnxRuntime.dll",
+        "lib/net8.0-android34.0/Microsoft.ML.OnnxRuntime.pdb",
+        "lib/net8.0-android34.0/Microsoft.ML.OnnxRuntime.xml",
+        "lib/net8.0-ios17.2/Microsoft.ML.OnnxRuntime.dll",
+        "lib/net8.0-ios17.2/Microsoft.ML.OnnxRuntime.pdb",
+        "lib/net8.0-maccatalyst17.2/Microsoft.ML.OnnxRuntime.dll",
+        "lib/net8.0-maccatalyst17.2/Microsoft.ML.OnnxRuntime.pdb",
+        "lib/net8.0/Microsoft.ML.OnnxRuntime.dll",
+        "lib/net8.0/Microsoft.ML.OnnxRuntime.pdb",
+        "lib/netstandard2.0/Microsoft.ML.OnnxRuntime.dll",
+        "lib/netstandard2.0/Microsoft.ML.OnnxRuntime.pdb",
+        "microsoft.ml.onnxruntime.managed.1.23.2.nupkg.sha512",
+        "microsoft.ml.onnxruntime.managed.nuspec"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -4807,10 +5425,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "OpenCvSharp4/4.10.0.20241108": {
-      "sha512": "4Lw57NQzOaR0fi9et7GMWB1rpdGzGuNgXHXy45Gltvt8SizQLOGufUonNF9Z+9mo3dcwGC/mL4w5NBgJCqZdHQ==",
+    "OpenCvSharp4/4.9.0.20240103": {
+      "sha512": "+BJMqToSH3dl+5SUF2YaPI+1eY/o/aTtvCQsY3qgcE4YS8qvPNS7MObzzVy4avYrBmcEEFnCvNF+1VbFnQjU9w==",
       "type": "package",
-      "path": "opencvsharp4/4.10.0.20241108",
+      "path": "opencvsharp4/4.9.0.20240103",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4822,14 +5440,14 @@
         "lib/netstandard2.0/OpenCvSharp.xml",
         "lib/netstandard2.1/OpenCvSharp.dll",
         "lib/netstandard2.1/OpenCvSharp.xml",
-        "opencvsharp4.4.10.0.20241108.nupkg.sha512",
+        "opencvsharp4.4.9.0.20240103.nupkg.sha512",
         "opencvsharp4.nuspec"
       ]
     },
-    "OpenCvSharp4.Extensions/4.10.0.20241108": {
-      "sha512": "H7mnUi9K9CIW5D4Mj0ycxlWRWjyz6mQSdXRpN2HNVtg6vfbKEsaRflYjWDupOK47+hRDDxS2+G5Imzhb2Xk4Tw==",
+    "OpenCvSharp4.Extensions/4.9.0.20240103": {
+      "sha512": "zqFJuQPV36ttTMrN1kMGQdj8rDD+wMDtTU5fVGE8osSPEAyehru1ow3xTAmB04uiaKlbzl/gy2G9BnbT+OgMNA==",
       "type": "package",
-      "path": "opencvsharp4.extensions/4.10.0.20241108",
+      "path": "opencvsharp4.extensions/4.9.0.20240103",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4841,14 +5459,14 @@
         "lib/netstandard2.0/OpenCvSharp.Extensions.xml",
         "lib/netstandard2.1/OpenCvSharp.Extensions.dll",
         "lib/netstandard2.1/OpenCvSharp.Extensions.xml",
-        "opencvsharp4.extensions.4.10.0.20241108.nupkg.sha512",
+        "opencvsharp4.extensions.4.9.0.20240103.nupkg.sha512",
         "opencvsharp4.extensions.nuspec"
       ]
     },
-    "OpenCvSharp4.runtime.win/4.10.0.20241108": {
-      "sha512": "0ae2dwel83tqKlAs45D3KYncoJHRzj1ArEESa6wz7FS3tYu37JDIb5yoMIZPzlkx3Gx2S1BjUrClfXbBHmVh5g==",
+    "OpenCvSharp4.runtime.win/4.9.0.20240103": {
+      "sha512": "PkV3ge6rE//gj0OlG4TRXzmcLVDoKsJx0lYN1ogx9gZhqUPHlzrnWqKk2hAFK+nU8T0chRhrwHL0U2hSMyoCWw==",
       "type": "package",
-      "path": "opencvsharp4.runtime.win/4.10.0.20241108",
+      "path": "opencvsharp4.runtime.win/4.9.0.20240103",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4856,12 +5474,23 @@
         "build/net5.0/OpenCvSharp4.runtime.win.props",
         "build/netcoreapp/OpenCvSharp4.runtime.win.props",
         "build/netstandard/OpenCvSharp4.runtime.win.props",
-        "opencvsharp4.runtime.win.4.10.0.20241108.nupkg.sha512",
+        "opencvsharp4.runtime.win.4.9.0.20240103.nupkg.sha512",
         "opencvsharp4.runtime.win.nuspec",
         "runtimes/win-x64/native/OpenCvSharpExtern.dll",
-        "runtimes/win-x64/native/opencv_videoio_ffmpeg4100_64.dll",
+        "runtimes/win-x64/native/opencv_videoio_ffmpeg490_64.dll",
         "runtimes/win-x86/native/OpenCvSharpExtern.dll",
-        "runtimes/win-x86/native/opencv_videoio_ffmpeg4100.dll"
+        "runtimes/win-x86/native/opencv_videoio_ffmpeg490.dll"
+      ]
+    },
+    "OpenCvSharp4.Windows/4.9.0.20240103": {
+      "sha512": "IOtMfbVyZ0K7/39EAaRyz496WNNCWeI/SV1yRI1fCoWbID84EEnVnFcY2iqn1G6sWfQIpASm7pc44OF9y/gbFw==",
+      "type": "package",
+      "path": "opencvsharp4.windows/4.9.0.20240103",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "opencvsharp4.windows.4.9.0.20240103.nupkg.sha512",
+        "opencvsharp4.windows.nuspec"
       ]
     },
     "runtime.any.System.Runtime/4.3.0": {
@@ -5204,10 +5833,10 @@
         "system.memory.data.nuspec"
       ]
     },
-    "System.Net.Http.Json/8.0.0": {
-      "sha512": "48Bxrd6zcGeQzS4GMEDVjuqCcAw/9wcEWnIu48FQJ5IzfKPiMR1nGtz9LrvGzU4+3TLbx/9FDlGmCUeLin1Eqg==",
+    "System.Numerics.Tensors/9.0.0": {
+      "sha512": "hyJB4UlpAi19Xr9AXzu2NuagKC4lPfHObNMEAA0HmqFz2rX7wKgzeYzO/jM/eBHDhnUGFFEjk5cOoJaxqg5J4A==",
       "type": "package",
-      "path": "system.net.http.json/8.0.0",
+      "path": "system.numerics.tensors/9.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5215,22 +5844,20 @@
         "LICENSE.TXT",
         "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/net461/System.Net.Http.Json.targets",
+        "buildTransitive/net461/System.Numerics.Tensors.targets",
         "buildTransitive/net462/_._",
-        "buildTransitive/net6.0/_._",
-        "buildTransitive/netcoreapp2.0/System.Net.Http.Json.targets",
-        "lib/net462/System.Net.Http.Json.dll",
-        "lib/net462/System.Net.Http.Json.xml",
-        "lib/net6.0/System.Net.Http.Json.dll",
-        "lib/net6.0/System.Net.Http.Json.xml",
-        "lib/net7.0/System.Net.Http.Json.dll",
-        "lib/net7.0/System.Net.Http.Json.xml",
-        "lib/net8.0/System.Net.Http.Json.dll",
-        "lib/net8.0/System.Net.Http.Json.xml",
-        "lib/netstandard2.0/System.Net.Http.Json.dll",
-        "lib/netstandard2.0/System.Net.Http.Json.xml",
-        "system.net.http.json.8.0.0.nupkg.sha512",
-        "system.net.http.json.nuspec",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Numerics.Tensors.targets",
+        "lib/net462/System.Numerics.Tensors.dll",
+        "lib/net462/System.Numerics.Tensors.xml",
+        "lib/net8.0/System.Numerics.Tensors.dll",
+        "lib/net8.0/System.Numerics.Tensors.xml",
+        "lib/net9.0/System.Numerics.Tensors.dll",
+        "lib/net9.0/System.Numerics.Tensors.xml",
+        "lib/netstandard2.0/System.Numerics.Tensors.dll",
+        "lib/netstandard2.0/System.Numerics.Tensors.xml",
+        "system.numerics.tensors.9.0.0.nupkg.sha512",
+        "system.numerics.tensors.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -5920,6 +6547,38 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "System.Threading.Channels/8.0.0": {
+      "sha512": "CMaFr7v+57RW7uZfZkPExsPB6ljwzhjACWW1gfU35Y56rk72B/Wu+sTqxVmGSk4SFUlPc3cjeKND0zktziyjBA==",
+      "type": "package",
+      "path": "system.threading.channels/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Threading.Channels.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Threading.Channels.targets",
+        "lib/net462/System.Threading.Channels.dll",
+        "lib/net462/System.Threading.Channels.xml",
+        "lib/net6.0/System.Threading.Channels.dll",
+        "lib/net6.0/System.Threading.Channels.xml",
+        "lib/net7.0/System.Threading.Channels.dll",
+        "lib/net7.0/System.Threading.Channels.xml",
+        "lib/net8.0/System.Threading.Channels.dll",
+        "lib/net8.0/System.Threading.Channels.xml",
+        "lib/netstandard2.0/System.Threading.Channels.dll",
+        "lib/netstandard2.0/System.Threading.Channels.xml",
+        "lib/netstandard2.1/System.Threading.Channels.dll",
+        "lib/netstandard2.1/System.Threading.Channels.xml",
+        "system.threading.channels.8.0.0.nupkg.sha512",
+        "system.threading.channels.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Threading.Tasks.Extensions/4.5.4": {
       "sha512": "zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
       "type": "package",
@@ -6094,16 +6753,17 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Microsoft.AspNetCore.SignalR.Client >= 8.0.0",
       "Microsoft.EntityFrameworkCore >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
       "Microsoft.Extensions.Hosting.WindowsServices >= 8.0.8",
       "Microsoft.Extensions.Http >= 8.0.0",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.22",
-      "OpenCvSharp4 >= 4.10.0.20241108",
-      "OpenCvSharp4.Extensions >= 4.10.0.20241108",
-      "OpenCvSharp4.runtime.win >= 4.10.0.20241108",
+      "Microsoft.ML.OnnxRuntime >= 1.23.2",
+      "OpenCvSharp4 >= 4.9.0.20240103",
+      "OpenCvSharp4.Extensions >= 4.9.0.20240103",
+      "OpenCvSharp4.Windows >= 4.9.0.20240103",
+      "OpenCvSharp4.runtime.win >= 4.9.0.20240103",
       "System.Drawing.Common >= 8.0.0",
-      "System.Net.Http.Json >= 8.0.0",
       "ZXing.Net >= 0.16.9",
       "ZXing.Net.Bindings.Windows.Compatibility >= 0.16.12"
     ]
@@ -6158,6 +6818,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Client": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.8, )"
@@ -6174,29 +6838,27 @@
             "target": "Package",
             "version": "[8.0.0, )"
           },
-          "Microsoft.NET.ILLink.Tasks": {
-            "suppressParent": "All",
+          "Microsoft.ML.OnnxRuntime": {
             "target": "Package",
-            "version": "[8.0.22, )",
-            "autoReferenced": true
+            "version": "[1.23.2, )"
           },
           "OpenCvSharp4": {
             "target": "Package",
-            "version": "[4.10.0.20241108, )"
+            "version": "[4.9.0.20240103, )"
           },
           "OpenCvSharp4.Extensions": {
             "target": "Package",
-            "version": "[4.10.0.20241108, )"
+            "version": "[4.9.0.20240103, )"
+          },
+          "OpenCvSharp4.Windows": {
+            "target": "Package",
+            "version": "[4.9.0.20240103, )"
           },
           "OpenCvSharp4.runtime.win": {
             "target": "Package",
-            "version": "[4.10.0.20241108, )"
+            "version": "[4.9.0.20240103, )"
           },
           "System.Drawing.Common": {
-            "target": "Package",
-            "version": "[8.0.0, )"
-          },
-          "System.Net.Http.Json": {
             "target": "Package",
             "version": "[8.0.0, )"
           },
@@ -6220,20 +6882,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[8.0.22, 8.0.22]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
