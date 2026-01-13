@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace QrScanService
 {
@@ -8,7 +10,6 @@ namespace QrScanService
         private readonly HubConnection _hubConnection;
         private readonly ILogger<SignalRClient> _logger;
 
-        // 👇 SỬA CONSTRUCTOR: Nhận thêm string hubUrl
         public SignalRClient(ILogger<SignalRClient> logger, string hubUrl)
         {
             _logger = logger;
@@ -24,7 +25,6 @@ namespace QrScanService
                 await ConnectAsync();
             };
 
-            // Tự động kết nối ngay khi khởi tạo
             _ = ConnectAsync();
         }
 
@@ -37,42 +37,34 @@ namespace QrScanService
                     await _hubConnection.StartAsync();
                     _logger.LogInformation("✅ SignalR Connected!");
                 }
-                catch { /* Bỏ qua lỗi connection ban đầu */ }
+                catch { }
             }
         }
 
-        // 👇 Hàm gửi thông tin quét về Server (Server sẽ tự xử lý logic Ghi hình/Login)
-        // File: QrScanService/SignalRClient.cs
-
-        // 👇 Đổi từ Task sang Task<bool>
+        // Gửi Logic (Login/Ghi hình) -> Gọi PushScanResult
         public async Task<bool> SendScanToCloudAsync(string station, string code, double x, double y, double w, double h)
         {
-            // Kiểm tra kết nối trước
-            if (_hubConnection.State != HubConnectionState.Connected)
-            {
-                _logger.LogWarning($"⚠️ SignalR chưa kết nối! (Status: {_hubConnection.State})");
-                return false; // Báo thất bại
-            }
+            if (_hubConnection.State != HubConnectionState.Connected) return false;
 
             try
             {
                 await _hubConnection.SendAsync("PushScanResult", station, code, x, y, w, h);
-                return true; // Gửi thành công
+                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogError($"❌ Lỗi gửi SignalR: {ex.Message}");
-                return false; // Báo thất bại do lỗi mạng
+                return false;
             }
         }
 
-        // Hàm này để vẽ khung xanh (giữ nguyên nếu cần)
+        // Gửi Visual (Vẽ khung) -> Gọi PushVisual (ĐÃ SỬA)
         public async Task SendScanResultAsync(string station, string code, double x, double y, double w, double h)
         {
             if (_hubConnection.State == HubConnectionState.Connected)
             {
-                // Gọi hàm vẽ khung xanh (Visual only)
-                await _hubConnection.SendAsync("ScanResult", station, code, x, y, w, h);
+                // 🔥 SỬA: Gọi đúng tên hàm "PushVisual" trên Hub
+                await _hubConnection.SendAsync("PushVisual", station, code, x, y, w, h);
             }
         }
     }

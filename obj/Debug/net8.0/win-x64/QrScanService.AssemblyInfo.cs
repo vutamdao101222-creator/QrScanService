@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QrScanService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b7d66550259b0047cded4902c63d99d86295148")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d935257ed90addeab7c1477d45d6e6cdcac16ee0")]
 [assembly: System.Reflection.AssemblyProductAttribute("QrScanService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QrScanService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
